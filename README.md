@@ -43,7 +43,7 @@ At this point, the map contained well over 2000 shapes, many of them text elemen
 ![Poor Inkscape](https://github.com/Kneasle/ringing-map-c-sharp/blob/master/Screenshots/Poor%20Inkscape.png)
 
 ### An attempted print
-Since the goal of this project is to create a real life paper map, I needed to find a way to print a 1.5m square poster with enough accuracy for the points to be visible.  An excellent opportunity for testing a real copy of the map arose when I went down to Cornwall to visit my aunt who knows an architect who has, amongst many other interesting things, an A1 printer for printing architect's diagrams.  Not knowing this in advance, I had to quickly adapt the code to print the map in slices, but unfortunately the resulting SVG was so large that it exceded the RAM capacity of the printer.  RIP.  The only screenshot I have for this attempt is this one, with the map in slightly the wrong place:
+Since the goal of this project is to create a real life paper map, I needed to find a way to print a 1.5m square poster with enough accuracy for the points to be visible.  An excellent opportunity for testing a real copy of the map arose when I went down to Cornwall to visit my aunt who knows an architect who has, amongst many other interesting things, an A1 printer for printing architect's diagrams.  Not knowing this in advance, I had to quickly adapt the code to print the map in slices which was messy but successful.  However, the resulting SVG was so large that it exceded the RAM capacity of the printer.  RIP.  The only screenshot I have for this attempt is this one, with the map in slightly the wrong place:
 
 ![Printing test](https://github.com/Kneasle/ringing-map-c-sharp/blob/master/Screenshots/Attempted%20Print.png)
 
