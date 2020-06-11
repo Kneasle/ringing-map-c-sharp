@@ -1,0 +1,27 @@
+﻿TODO:
+ - Allow cities to be rendered & labelled
+ - Implement Voronoi
+	 - Add diocese borders
+	 - Add city outlines to the map
+ - Add title
+ - Add key
+ - Allow final hand-made tweaks to the label placer
+
+Preprocessing todos:
+	 - Move the label size calculations into the preprocessor
+	 - Add more coastlines
+	 - Allow city rectangles to be processed by the preprocessor
+	 - Move channel isles to their own segment
+	 - Make the England/Scotland gap a line rather than by country so the map fills space better
+
+POSSIBLE IMPROVEMENTS:
+ - Add small marks to show which label belongs to which tower
+
+ONGOING:
+ - Improve labeller
+
+DONE:
+ - Implement coastline clipping
+ - Change tower rect of main island to allow towers on the edge to be visible
+ - Rewrite the preprocessor
+ - Implement nudger
