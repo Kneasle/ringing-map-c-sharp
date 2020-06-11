@@ -19,22 +19,22 @@ Two issues became apparent early on in the process.  First issue is that the nam
 
 However, you cannot just filter for unique tower names because many towers share common place names but are many miles apart (for example the name of my home tower, Stone, is shared by at least 2 other ringable towers both of which are in completely different parts of the country).  So a distance cutoff was made for when two towers of the same name had to be labelled using the dedication instead of the place name.  This in general worked really nicely and a bit of geographic intuition goes a long way to figuring out the place names.
 
-Another issue is that of cities.  To start with, the map would treat cities the same as the rest of the map and so they would turn into a blobby mess of towers all very close together which are impossible to label (although our point design is working very well because the bell numbers are still identifiable):
+Another issue is that of cities.  To start with, the map generator would treat cities the same as the rest of the map and so they would turn into a blobby mess of towers all very close together which are impossible to label (although my point design is clearly working because the bell numbers are still identifiable):
 
 ![Cities](https://raw.githubusercontent.com/Kneasle/ringing-map-c-sharp/master/Screenshots/City%20detection%20required.png)
 
-My intended solution to this (which never got fully implemented before switching to Linux) was to find the cities, remove them from the map, and display them enlarged round the edge of the map.  The first bit, the border detection, was implemented, first with some strange results:
+My intended solution to this (which never got fully implemented before switching to Linux) was to find the cities, remove them from the map, and display them enlarged round the edge of the map.  The first part of this - city detection and border creation - _was_ implemented, first with some strange results:
 
 ![Broken borders](https://raw.githubusercontent.com/Kneasle/ringing-map-c-sharp/master/Screenshots/City%20Borders%20Not%20Quite%20Working.png)
 
-and then with some tweaking and bug-fixing, here showing what I belive is the border around London before the coastline data was added:
+and then properly with some tweaking and bug-fixing.  Here's a screenshot showing what I belive is the border around London before the coastline data was added:
 
 ![Fixed border around London](https://github.com/Kneasle/ringing-map-c-sharp/blob/master/Screenshots/The%20border%20around%20London.png)
 
 ### Coastlines and Diocese Borders
-The next two things to implement were the coastlines and the diocese borders.  The coastlines were done simply by figuring out the indices of those particular polygons in the dataset, and then importing them (doing OS grid conversions where required) and then converting these points into a polygon for the SVG generator.
+The next two things to implement were the coastlines and the diocese borders.  The coastlines were done simply by figuring out the numbers of the required polygons in the huge dataset, and then importing them (doing OS grid conversions where required) and then converting these points into a polygon for the SVG generator.
 
-The diocese borders, on the other hand, are not so straightforward.  There is not to my knowledge any dataset with them on, so I used an implementation of Voronoi's algorithm to determine the lines of equal distance between each tower, and add this to the map if the neighbouring towers are from different dioceses (with the obligatory handling of edge cases like towers with no dedications, or privately owned towers).  These lines were combined and converted into splines so that they looked better on the map.  Now the map looked like this (the thick line on the right is a coastline and the thinner line is a diocese border.  Note how the tower names have white rectangles behind them to prevent the text from clashing with the other lines):
+The diocese borders, on the other hand, are not so straightforward.  There is not to my knowledge any dataset with them on, so I used an implementation of Voronoi's algorithm to determine the lines exactly halfway between each pair of adjacent towers, and add this to the map if the neighbouring towers are from different dioceses (with the obligatory task of dealing with pesky edge cases like towers with no dedications or privately owned towers).  These lines were combined and converted into Bezier splines so that they looked better on the map.  Now the map looked like this (the thick line on the right is a coastline and the thinner line is a diocese border).  Note how the tower names have white rectangles behind them to prevent the text from clashing with the other lines:
 
 ![Screenshot of some towers](https://raw.githubusercontent.com/Kneasle/ringing-map-c-sharp/master/Screenshots/Region%20Example.png)
 
@@ -43,11 +43,13 @@ At this point, the map contained well over 2000 shapes, many of them text elemen
 ![Poor Inkscape](https://github.com/Kneasle/ringing-map-c-sharp/blob/master/Screenshots/Poor%20Inkscape.png)
 
 ### An attempted print
-A big issue with creating a real copy of this map is the cost and difficulty of printing a 1.5m square with enough accuracy.  An excellent opportunity for testing this arose when I went down to Cornwall to visit my aunt, who knows an architect who has, amongst other things, an A1 printer for printing architect's diagrams.  Not knowing this in advance, I had to quickly adapt the code to print the map in slices, but unfortunately the resulting SVG was so large that it exceded the RAM capacity of the printer.  RIP.  The only screenshot I have is this one, with the map in slightly the wrong place:
+Since the goal of this project is to create a real life paper map, I needed to find a way to print a 1.5m square poster with enough accuracy for the points to be visible.  An excellent opportunity for testing a real copy of the map arose when I went down to Cornwall to visit my aunt who knows an architect who has, amongst many other interesting things, an A1 printer for printing architect's diagrams.  Not knowing this in advance, I had to quickly adapt the code to print the map in slices, but unfortunately the resulting SVG was so large that it exceded the RAM capacity of the printer.  RIP.  The only screenshot I have for this attempt is this one, with the map in slightly the wrong place:
 
 ![Printing test](https://github.com/Kneasle/ringing-map-c-sharp/blob/master/Screenshots/Attempted%20Print.png)
 
 ### Conclusion
-This is as far as I have screenshots for the project.  A few more things were completed before moving to Linux, such as starting work on a better label placer (potentially using some clever optimisation techniques such as simulated annealing) and imbedding a nice title in the base of the picture.  If anyone is interested in buying a map like this, I would be happy to recommence the project if there is enough interest (the printing is niche enough that I would have to print in quite large batches).  Anyway, since you got to the end, thank you very much for reading! (if you skipped to the end, naughty naughty, please go back and read the rest ;P)
+This is as far as the screenshots go for this project.  A few more things were completed before moving to Linux, such as starting work on a better label placer (potentially using some clever optimisation techniques such as simulated annealing) and embedding a nice title in the base of the picture.  If anyone is interested in buying a map like this, I would be happy to recommence the project if it gains enough interest (the printing is niche enough that I would have to print in quite large batches).
 
-(and yes, the output file was called final.svg this whole time!)
+Since you got to the end, thank you very much for reading! (if you skipped to the end, naughty naughty, please go back and read the rest ;P)
+
+and yes, the output file was called final.svg this whole time.  Some things never change...
