@@ -38,7 +38,7 @@ The diocese borders, on the other hand, are not so straightforward.  There is no
 
 ![Screenshot of some towers](https://raw.githubusercontent.com/Kneasle/ringing-map-c-sharp/master/Screenshots/Region%20Example.png)
 
-At this point, the map contained well over 2000 shapes, many of them text elements or polygons which was causing huge stress to the SVG editor I was using to view them ... poor Inkscape.  It is an unsung hero of this project.
+At this point, the map's SVG file contained well over 20,000 shapes, many of them text elements or polygons which was causing huge stress to the SVG editor I was using to view them ... poor Inkscape.  It is an unsung hero of this project.
 
 ![Poor Inkscape](https://github.com/Kneasle/ringing-map-c-sharp/blob/master/Screenshots/Poor%20Inkscape.png)
 
